@@ -1,0 +1,18 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff0000;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0000;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <text x="100" y="40" font-family="Arial, sans-serif" font-size="36" font-weight="900" text-anchor="middle" fill="url(#logoGradient)" filter="url(#glow)">AERET</text>
+  <rect x="10" y="10" width="180" height="40" rx="8" stroke="url(#logoGradient)" stroke-width="2" fill="none" opacity="0.3"/>
+</svg>
