@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeret - AI Video Editor</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="logo">
+                <h1>AERET</h1>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-header">
+                <h1>AERET</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" id="loginBtn">Prisijungti</button>
+                <button class="nav-btn primary" id="registerBtn">Registruotis</button>
+            </nav>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="chat-box">
+                <div class="chat-header">
+                    <h2>AI Video Editor</h2>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Prieinamas</span>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Sveiki! Aš esu Aeret AI asistentas. Kaip galiu padėti su jūsų video redagavimu?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Įkelkite video/foto failą arba įklijuokite URL</p>
+                        <input type="file" id="fileInput" accept="video/*,image/*" multiple>
+                        <input type="url" id="urlInput" placeholder="Arba įklijuokite URL...">
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="input-container">
+                            <input type="text" id="messageInput" placeholder="Įveskite žinutę...">
+                            <button class="send-btn" id="sendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Button -->
+        <button class="projects-btn" id="projectsBtn">
+            <i class="fas fa-folder"></i>
+            <span>Projektai</span>
+        </button>
+
+        <!-- Projects Sidebar -->
+        <div class="projects-sidebar" id="projectsSidebar">
+            <div class="sidebar-header">
+                <h3>Mano projektai</h3>
+                <button class="close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="projects-list">
+                <div class="project-item">
+                    <div class="project-thumbnail">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Mano pirmas video</h4>
+                        <p>2024-01-15</p>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-thumbnail">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Fotografijų kolekcija</h4>
+                        <p>2024-01-10</p>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-thumbnail">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Muzikos video</h4>
+                        <p>2024-01-05</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Prisijungti</h2>
+                <button class="close-modal" id="closeLoginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="loginEmail">El. paštas</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Slaptažodis</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Prisijungti</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registruotis</h2>
+                <button class="close-modal" id="closeRegisterModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="register-form">
+                <div class="form-group">
+                    <label for="registerName">Vardas</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">El. paštas</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Slaptažodis</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="plan-selection">
+                    <h3>Pasirinkite planą</h3>
+                    <div class="plans">
+                        <div class="plan-card" data-plan="free">
+                            <div class="plan-header">
+                                <h4>Free</h4>
+                                <div class="plan-price">0€</div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>5 žinutės per dieną</li>
+                                <li>Pagrindiniai redagavimo įrankiai</li>
+                                <li>2GB saugykla</li>
+                            </ul>
+                        </div>
+                        <div class="plan-card" data-plan="basic">
+                            <div class="plan-header">
+                                <h4>Basic</h4>
+                                <div class="plan-price">10€</div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>50 žinučių per dieną</li>
+                                <li>Visos redagavimo funkcijos</li>
+                                <li>10GB saugykla</li>
+                                <li>Prioritetinis palaikymas</li>
+                            </ul>
+                        </div>
+                        <div class="plan-card" data-plan="pro">
+                            <div class="plan-header">
+                                <h4>Pro</h4>
+                                <div class="plan-price">25€</div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>100 žinučių per dieną</li>
+                                <li>Visos funkcijos + AI</li>
+                                <li>50GB saugykla</li>
+                                <li>24/7 palaikymas</li>
+                                <li>Eksportavimas HD</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Registruotis</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
